@@ -1,5 +1,7 @@
 //  Modules
 import Dashboard from './views/Dashboard.js'
+import Posts from './views/Post.js'
+import Settings from './views/Settings.js'
 
 // Handle History (back button)
 const navigateTo = (url) => {
@@ -14,14 +16,14 @@ const router = async () => {
       path: '/',
       view: Dashboard,
     },
-    // {
-    //   path: '/posts',
-    //   view: () => console.log('Viewing Post'),
-    // },
-    // {
-    //   path: '/settings',
-    //   view: () => console.log('Viewing Settings'),
-    // },
+    {
+      path: '/posts',
+      view: Posts,
+    },
+    {
+      path: '/settings',
+      view: Settings,
+    },
   ]
 
   // Test each route for match
