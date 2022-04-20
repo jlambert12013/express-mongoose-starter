@@ -21,6 +21,10 @@ const router = async () => {
       view: Posts,
     },
     {
+      path: '/post/',
+      view: Posts,
+    },
+    {
       path: '/settings',
       view: Settings,
     },
