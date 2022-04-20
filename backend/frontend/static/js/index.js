@@ -1,3 +1,4 @@
+//  Modules
 import Dashboard from './views/Dashboard.js'
 
 // Handle History (back button)
@@ -45,6 +46,7 @@ const router = async () => {
   document.querySelector('#app').innerHTML = await view.getHtml()
 }
 
+// Listen for events
 window.addEventListener('popstate', router)
 
 document.addEventListener('DOMContentLoaded', () => {
