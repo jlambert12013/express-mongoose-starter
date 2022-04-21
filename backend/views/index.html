@@ -8,7 +8,7 @@
     <title>Dashboard</title>
   </head>
   <body>
-    <form id="productForm">
+    <form id="form">
       <input type="text" id="title" name="title" placeholder="title" />
       <input type="text" id="make" name="make" placeholder="make" />
       <input type="text" id="model" name="model" placeholder="model" />
@@ -19,31 +19,27 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      document
-        .getElementById('productForm')
-        .addEventListener('submit', handleForm)
+      document.getElementById('button').addEventListener('click', handleForm)
     })
 
-    function handleForm(ev) {
-      ev.preventDefault()
+    function handleForm(e) {
+      e.preventDefault()
 
-      const productForm = ev.target
-      const product = new FormData(productForm)
+      const title = document.querySelector('#title').value
+      const make = document.querySelector('#make').value
+      const model = document.querySelector('#model').value
+      const year = document.querySelector('#year').value
 
-      for (let key of product.keys()) {
-        console.log(key, product.get(key))
+      const product = {
+        title: title,
+        make: make,
+        model: model,
+        year: year,
       }
 
-      const url = 'localhost:5000/api/goals'
-      const req = new Request(url, {
-        body: product,
-        method: 'POST',
-      })
+      const newProduct = JSON.stringify(product)
 
-      fetch(req)
-        .then((res) => res.json())
-        .then((data) => console.log(data))
-        .catch(console.warn)
+      console.log(newProduct)
     }
   </script>
 </html>
