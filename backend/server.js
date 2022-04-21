@@ -14,16 +14,9 @@ connectDB()
 // Middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-
-app.use(
-  '/static',
-  express.static(path.resolve(__dirname, 'frontend', 'static'))
-)
+app.use('/', express.static(path.resolve(__dirname, 'views')))
 
 // Route
-app.get('/*', (req, res) => {
-  res.sendFile(path.resolve('frontend', 'index.html'))
-})
 app.use('/api/goals', require('./routes/goalRoutes'))
 
 //  Error Handler

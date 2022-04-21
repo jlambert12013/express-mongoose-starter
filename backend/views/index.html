@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="#" type="image/x-icon" />
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <form id="productForm">
+      <input type="text" id="title" name="title" placeholder="title" />
+      <input type="text" id="make" name="make" placeholder="make" />
+      <input type="text" id="model" name="model" placeholder="model" />
+      <input type="text" id="year" name="year" placeholder="year" />
+      <button id="button" type="submit">Submit</button>
+    </form>
+  </body>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document
+        .getElementById('productForm')
+        .addEventListener('submit', handleForm)
+    })
+
+    function handleForm(ev) {
+      ev.preventDefault()
+
+      const productForm = ev.target
+      const product = new FormData(productForm)
+
+      for (let key of product.keys()) {
+        console.log(key, product.get(key))
+      }
+
+      const url = 'localhost:5000/api/goals'
+      const req = new Request(url, {
+        body: product,
+        method: 'POST',
+      })
+
+      fetch(req)
+        .then((res) => res.json())
+        .then((data) => console.log(data))
+        .catch(console.warn)
+    }
+  </script>
+</html>
